@@ -9,10 +9,21 @@ $(() => {
 
 	let msglst = $('#msgList');
 	let sndbtn = $('#sndmsg');
-	let msgBox = $('#msgBox')
+	let msgBox = $('#msgBox');	
+	let clrBtn = $('#clearBtn');
+
+	clrBtn.click(() => { 
+
+	});
 
 	sndbtn.click(() => { 		
 		console.log('Message Send');
+		setTimeout(() => { 
+			$('#notify').text("Message Sent");
+			setTimeout(() => { 
+				$('#notify').css('display', 'none');
+			}, 2000);
+		}, 1000);		
 		socket.usrnm = $('#username').val();
 
 		socket.emit('sendMsg', {

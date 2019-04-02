@@ -19,6 +19,10 @@ io.on('connect', (socket) => {
 	});
 });
 
+io.on('clear', (data) => { 
+	
+});
+
 const PORT = process.env.PORT || 4444;
 
 server.listen(PORT, () => {
