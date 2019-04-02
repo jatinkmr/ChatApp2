@@ -7,19 +7,36 @@
 		<script src="jQuery.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="script.js"></script>
+		<link rel="stylesheet" href="boot.css" type="text/css">
+		<style>
+			#msgList {
+				height: 300px;				
+				border: 0.2px solid black;
+			}
+		</style>
 	</head>
 	<body>
-		<h2>Let's Chat Guyzz...</h2>
-		<div id="loginDiv">
-			<h2>Login</h2>
-			<input type="text" id="usr" placeholder="Enter your Name">
-			<button id="login">login</button>
-		</div>
-		<div id="chatDiv">
-			<h2>Let's CHAT</h2>
-			<input type="text" id="msgBox" placeholder="Enter your Message">
-			<button id="sndmsg">send</button>
-			<ul id="msgList"></ul>
-		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3 col-sm-12">
+					<h1 class="text-center">
+						ChatApp
+					<button id="clear" class="btn btn-danger">Clear</button>
+					</h1>
+					<div id="status"></div>
+					<div id="chat">
+						<input type="text" id="username" class="form-control" placeholder="Enter Your Name">
+						<br>
+						<div class="card-block" id="msgList">
+							Your Messages : <br/>
+						</div>
+						<br/>
+					</div>
+					<textarea id="msgBox" class="form-control" placeholder="Enter Your Message...."></textarea>
+					<br/>
+					<button id="sndmsg" class="btn btn-outline-success">Send</button>
+				</div>
+			</div>
+		</div>		
 	</body>
 </html>
