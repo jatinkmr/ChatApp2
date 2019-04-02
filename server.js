@@ -10,8 +10,17 @@ app.use('/', express.static(
 	path.join(__dirname, 'frontend')
 ));
 
+io.on('connect', (socket) => { 
+	console.log('New Socket Formed ' + socket.id);
+	socket.emit('connection');
+	
+	socket.on('sendmsg', (data) => { 
+		io.emit('recvmnsg', data);
+	});
+});
+
 const PORT = process.env.PORT || 4444;
 
 server.listen(PORT, () => {
-	console.log('server started....');
+	console.log('server started at ....' + PORT);
 });
