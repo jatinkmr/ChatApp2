@@ -13,12 +13,19 @@ $(() => {
 	let clrBtn = $('#clearBtn');
 
 	clrBtn.click(() => { 
-
+		socket.emit('clear');
 	});
+
+	socket.on('cleared', () => { 
+		msglst.textContent = '';
+	});
+
+	$('#notify').css('display', 'none');
 
 	sndbtn.click(() => { 		
 		console.log('Message Send');
-		setTimeout(() => { 
+		$('#notify').css('display', 'initial');
+		setTimeout(() => { 			
 			$('#notify').text("Message Sent");
 			setTimeout(() => { 
 				$('#notify').css('display', 'none');

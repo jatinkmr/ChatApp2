@@ -20,7 +20,9 @@ io.on('connect', (socket) => {
 });
 
 io.on('clear', (data) => { 
-	
+	chat.remote({}, () => {
+		socket.emit('cleared');
+	});
 });
 
 const PORT = process.env.PORT || 4444;
