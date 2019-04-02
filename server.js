@@ -12,10 +12,10 @@ app.use('/', express.static(
 
 io.on('connect', (socket) => { 
 	console.log('New Socket Formed ' + socket.id);
-	socket.emit('connection');
+	socket.emit('connect');
 	
-	socket.on('sendmsg', (data) => { 
-		io.emit('recvmnsg', data);
+	socket.on('sendMsg', (data) => { 
+		io.emit('recvMsg', data);
 	});
 });
 

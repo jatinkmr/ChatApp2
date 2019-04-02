@@ -1,6 +1,6 @@
 let socket = io();
 
-socket.on('connection', () => {
+socket.on('connect', () => {
 	console.log('connected' + socket.id);
 });
 
@@ -13,7 +13,7 @@ $(() => {
 	let lgnbtn = $('#login');
 
 	$('#chatDiv').css("display", "none");
-	
+
 	lgnbtn.click(() => { 
 		// console.log('Button Clicked');	
 		socket.usrnm = $('#usr').val();		
@@ -24,17 +24,17 @@ $(() => {
 
 	sndbtn.click(() => { 
 		// console.log('Message Send');
-		socket.emit('send', {
+		socket.emit('sendMsg', {
 			message: msgBox.val(),
-			user: socket.usr
+			user: socket.usrnm
 		});
 	});
 
 	socket.on('recvMsg', (data) => { 
-		if (data.user === socket.usr) {
+		if (data.user === socket.usrnm) {
 			msglst.append(`Me : ${data.message}`);
 		} else { 
-			msglst.append(`{data.user} : ${data.message}`);
+			msglst.append(`${data.user} : ${data.message}`);
 		}
 	});
 });
