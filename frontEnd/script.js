@@ -11,6 +11,7 @@ $(() => {
 	let sndbtn = $('#sndmsg');
 	let msgBox = $('#msgBox');	
 	let clrBtn = $('#clearBtn');
+	let myList = $('#myMsg');
 
 	clrBtn.click(() => { 
 		console.log('Clicked');
@@ -34,13 +35,16 @@ $(() => {
 			message: msgBox.val(),
 			user: socket.usrnm
 		});
+		msgBox.text("");
 	});
 
 	socket.on('recvMsg', (data) => { 
 		if (data.user === socket.usrnm) {
-			msglst.append(`Me : ${data.message} <br/>`);
+			myList.append($('<li>').text(`Me : ${data.message}`).css('text-align', 'right'));
+			// msglst.append(`Me : ${data.message} <br/>`);
 		} else { 
-			msglst.append(`${data.user} : ${data.message} <br/>`);
+			myList.append($('<li>').text(`${data.user} : ${data.message}`).css('text-align', 'left'));
+			// msglst.append(`${data.user} : ${data.message} <br/>`);
 		}
 	});
 });
