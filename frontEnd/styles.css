@@ -1,0 +1,13 @@
+#msgBox, #username {
+	border-radius: 10px;
+}			
+
+#msgList {
+	border-radius: 10px;
+	height: 300px;				
+	border: 1px solid black;
+}
+
+#myMsg {				
+	list-style-type: none;
+}
