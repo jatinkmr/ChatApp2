@@ -21,7 +21,7 @@ io.on('connect', (socket) => {
 
 io.on('clear', (data) => { 
 	chat.remote({}, () => {
-		socket.emit('cleared');
+		io.emit('cleared');
 	});
 });
 
