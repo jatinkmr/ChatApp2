@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 app.use('/', express.static(
-	path.join(__dirname, 'frontend')
+	path.join(__dirname, 'fronEnd')
 ));
 
 io.on('connect', (socket) => {
