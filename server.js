@@ -10,18 +10,12 @@ app.use('/', express.static(
 	path.join(__dirname, 'frontend')
 ));
 
-io.on('connect', (socket) => { 
+io.on('connect', (socket) => {
 	console.log('New Socket Formed ' + socket.id);
 	socket.emit('connect');
 	
-	socket.on('sendMsg', (data) => { 
+	socket.on('sendMsg', (data) => {
 		io.emit('recvMsg', data);
-	});
-});
-
-io.on('clear', (data) => { 
-	chat.remote({}, () => {
-		io.emit('cleared');
 	});
 });
 

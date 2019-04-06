@@ -13,11 +13,8 @@ $(() => {
 	let clrBtn = $('#clearBtn');
 
 	clrBtn.click(() => { 
-		socket.emit('clear');
-	});
-
-	socket.on('cleared', () => { 
-		msglst.textContent = '';
+		console.log('Clicked');
+		msglst.text("Your Messages : ");
 	});
 
 	$('#notify').css('display', 'none');
