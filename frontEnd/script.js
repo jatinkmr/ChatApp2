@@ -9,42 +9,42 @@ $(() => {
 
 	let msglst = $('#msgList');
 	let sndbtn = $('#sndmsg');
-	let msgBox = $('#msgBox');	
+	let msgBox = $('#msgBox');
 	let clrBtn = $('#clearBtn');
-	let myList = $('#myMsg');
 
-	clrBtn.click(() => { 
+	clrBtn.click(() => {
 		console.log('Clicked');
-		msglst.text("Your Messages : ");
+		msglst.val("");
 	});
 
 	$('#notify').css('display', 'none');
 
-	sndbtn.click(() => { 		
+	sndbtn.click(() => {
 		console.log('Message Send');
 		$('#notify').css('display', 'initial');
-		setTimeout(() => { 			
+		setTimeout(() => {
 			$('#notify').text("Message Sent");
-			setTimeout(() => { 
+			setTimeout(() => {
 				$('#notify').css('display', 'none');
 			}, 2000);
-		}, 1000);		
+		}, 1000);
 		socket.usrnm = $('#username').val();
 
 		socket.emit('sendMsg', {
 			message: msgBox.val(),
 			user: socket.usrnm
 		});
-		msgBox.text("");
+		msgBox.val("");
 	});
 
-	socket.on('recvMsg', (data) => { 
+	socket.on('recvMsg', (data) => {
+		let msgText = '';
 		if (data.user === socket.usrnm) {
-			myList.append($('<li>').text(`Me : ${data.message}`).css('text-align', 'right'));
-			// msglst.append(`Me : ${data.message} <br/>`);
-		} else { 
-			myList.append($('<li>').text(`${data.user} : ${data.message}`).css('text-align', 'left'));
-			// msglst.append(`${data.user} : ${data.message} <br/>`);
+			msgText = `Me: ${data.message}\n`;
+		} else {
+			msgText = `${data.user}: ${data.message}\n`;
 		}
+		msglst.val(msglst.val() + msgText);
+		msglst.scrollTop(msglst[0].scrollHeight);
 	});
 });
